@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
-
 class NewVsitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome("chromedriver.exe")
