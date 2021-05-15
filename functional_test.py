@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
+
 class NewVsitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome("chromedriver.exe")
@@ -14,9 +15,12 @@ class NewVsitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         self.browser.get("http://localhost:8000")
 
-# Edith ouviu falar que agora a aplicação online de lista de tarefas
-# aceita definir prioridades nas tarefas do tipo baixa, média e alta
-# Ela decide verificar a homepage
+        # Edith ouviu falar que agora a aplicação online de lista de tarefas
+        # aceita definir prioridades nas tarefas do tipo baixa, média e alta
+        # Ela decide verificar a homepage
+
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('Finish the test!')
 
 
 # Ela percebe que o título da página e o cabeçalho mencionam
@@ -53,4 +57,4 @@ class NewVsitorTest(unittest.TestCase):
 # Ela acessa essa URL -- sua lista de tarefas continua lá.
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
