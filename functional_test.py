@@ -42,14 +42,11 @@ class NewVsitorTest(unittest.TestCase):
         # como um item em uma lista de tarefas
 
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1 Comprar anzol - alta' for row in rows),
-            "New to-do item not appear in table"
-        )
+        self.assertIn('1: Comprar anzol', [row.text for row in rows])
 
         # Ainda continua havendo uma caixa de texto convidando-a a
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
