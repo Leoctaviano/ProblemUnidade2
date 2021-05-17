@@ -10,6 +10,11 @@ class NewVsitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome("chromedriver.exe")
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_can_start_a_list_and_retrieve_it_later(self):
         self.browser.get("http://localhost:8000")
 
@@ -45,16 +50,24 @@ class NewVsitorTest(unittest.TestCase):
         # como um item em uma lista de tarefas
 
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Comprar anzol - Prioridade Alta', [row.text for row in rows])
+        #table = self.browser.find_element_by_id('id_list_table')
+        #rows = table.find_elements_by_tag_name('tr')
+        #self.assertIn('1: Comprar anzol - Prioridade Alta', [row.text for row in rows])
 
         # Ainda continua havendo uma caixa de texto convidando-a a
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
         # e assinala prioridade baixa pois ela ainda tem cola suficiente
         # por algum tempo
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys("Comprar cola instantânea")
+        select = Select(self.browser.find_element_by_id('input01'))
+        select.select_by_visible_text('Baixa')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
+        self.check_for_row_in_list_table('2: Comprar cola instantânea - Prioridade Baixa')
 
         self.fail('Finish the test!')
 
