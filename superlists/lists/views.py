@@ -5,5 +5,5 @@ from django.shortcuts import render
 def home_page(request):
     return render(request, 'home.html', {
         'new_item_text': request.POST.get('item_text', ''),
-        'new_option_text': request.POST.get('option_test', '')
+        'new_option_text': request.POST.get('option_text', '')
     })

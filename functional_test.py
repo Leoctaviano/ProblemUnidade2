@@ -38,7 +38,7 @@ class NewVsitorTest(unittest.TestCase):
 
         inputbox.send_keys('Comprar anzol')
         select = Select(self.browser.find_element_by_id('input01'))
-        select.select_by_value("0")
+        select.select_by_visible_text('Alta')
 
         # Quando ela tecla enter, a página é atualizada, e agora
         # a página lista "1 - Comprar anzol - prioridade alta"
@@ -49,7 +49,7 @@ class NewVsitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Comprar anzol', [row.text for row in rows])
+        self.assertIn('1: Comprar anzol - Prioridade Alta', [row.text for row in rows])
 
         # Ainda continua havendo uma caixa de texto convidando-a a
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
