@@ -6,10 +6,18 @@
 		<h1>Your Priority To-Do list</h1>
 		<form method="POST">
 			<input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+			</br>
+			</br>
+			<label for="input01">Prioridade</br>
+			<select id="input01" name="option_text" placeholder="Prioridade">
+			<option value="0">Alta</option>
+			<option value="1">Baixa</option><option value="2">Média</option>
+			</select>
+			</label>
 			{% csrf_token %}
 		</form>
 		<table id="id_list_table">
-			<tr><td>1: {{ new_item_text }}</td></tr>
+			<tr><td>1: {{ new_item_text }} {{new_option_text}}</td></tr>
 		</table>
 	</body>
 </html>

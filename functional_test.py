@@ -3,6 +3,7 @@ import unittest
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 
 class NewVsitorTest(unittest.TestCase):
@@ -36,6 +37,8 @@ class NewVsitorTest(unittest.TestCase):
         # e assinala prioridade alta no campo de seleção de prioridades
 
         inputbox.send_keys('Comprar anzol')
+        select = Select(self.browser.find_element_by_id('input01'))
+        select.select_by_value("0")
 
         # Quando ela tecla enter, a página é atualizada, e agora
         # a página lista "1 - Comprar anzol - prioridade alta"
