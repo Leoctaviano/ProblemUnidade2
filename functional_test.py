@@ -50,7 +50,7 @@ class NewVsitorTest(unittest.TestCase):
         # como um item em uma lista de tarefas
 
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
+        self.check_for_row_in_list_table('1: Comprar anzol Alta')
 
         # Ainda continua havendo uma caixa de texto convidando-a a
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
@@ -59,6 +59,7 @@ class NewVsitorTest(unittest.TestCase):
 
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys("Comprar cola instantânea")
+        select = Select(self.browser.find_element_by_id('input01'))
         select.select_by_visible_text('Baixa')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(5)
@@ -66,8 +67,8 @@ class NewVsitorTest(unittest.TestCase):
 # A página é atualizada novamente e agora mostra os dois
 # itens em sua lista e as respectivas prioridades
 
-        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
-        self.check_for_row_in_list_table('2: Comprar cola instantânea - Prioridade Baixa')
+        self.check_for_row_in_list_table('1: Comprar anzol Alta')
+        self.check_for_row_in_list_table('2: Comprar cola instantânea Baixa')
         self.fail('Finish the test!')
 
 
