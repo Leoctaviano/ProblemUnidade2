@@ -52,28 +52,23 @@ class NewVsitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
 
-        #table = self.browser.find_element_by_id('id_list_table')
-        #rows = table.find_elements_by_tag_name('tr')
-        #self.assertIn('1: Comprar anzol - Prioridade Alta', [row.text for row in rows])
-
         # Ainda continua havendo uma caixa de texto convidando-a a
         # acrescentar outro item. Ela insere "Comprar cola instantâne"
         # e assinala prioridade baixa pois ela ainda tem cola suficiente
         # por algum tempo
+
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys("Comprar cola instantânea")
-        select = Select(self.browser.find_element_by_id('input01'))
         select.select_by_visible_text('Baixa')
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
-        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
-        self.check_for_row_in_list_table('2: Comprar cola instantânea - Prioridade Baixa')
-
-        self.fail('Finish the test!')
-
+        time.sleep(5)
 
 # A página é atualizada novamente e agora mostra os dois
 # itens em sua lista e as respectivas prioridades
+
+        self.check_for_row_in_list_table('1: Comprar anzol - Prioridade Alta')
+        self.check_for_row_in_list_table('2: Comprar cola instantânea - Prioridade Baixa')
+        self.fail('Finish the test!')
 
 
 # Edith se pergunta se o site lembrará de sua lista. Então
