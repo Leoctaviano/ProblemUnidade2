@@ -16,7 +16,7 @@ class NewVsitorTest(unittest.TestCase):
         self.assertIn(row_text, [row.text for row in rows])
 
     def test_can_start_a_list_and_retrieve_it_later(self):
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
 
         # Edith ouviu falar que agora a aplicação online de lista de tarefas
         # aceita definir prioridades nas tarefas do tipo baixa, média e alta
@@ -79,5 +79,3 @@ class NewVsitorTest(unittest.TestCase):
 
 # Ela acessa essa URL -- sua lista de tarefas continua lá.
 
-if __name__ == '__main__':
-    unittest.main()
