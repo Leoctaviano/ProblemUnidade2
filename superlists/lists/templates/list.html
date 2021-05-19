@@ -17,5 +17,10 @@
 			</label>
 			{% csrf_token %}
 		</form>
+		<table id="id_list_table">
+			{% for item in items %}
+			<tr><td>{{ forloop.counter }}: {{ item.text }} - Prioridade {{item.prior}}</td></tr>
+			{% endfor %}
+			</table>
 	</body>
 </html>
