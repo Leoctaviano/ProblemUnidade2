@@ -29,7 +29,7 @@ class HomePageTest(TestCase):
         response = self.client.post('/', data={'item_text': 'A new list item', 'option_text': 'Alta'})
 
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response['location'], '/')
+        self.assertEquals(response['location'], '/lists/the-only-list-in-the-world/')
 
     def test_displays_all_list_itens(self):
         Item.objects.create(text='itemey 1')
@@ -39,6 +39,7 @@ class HomePageTest(TestCase):
 
         self.assertIn('itemey 1', response.content.decode())
         self.assertIn('itemey 2', response.content.decode())
+
 
 
 class ItemModelTest(TestCase):
